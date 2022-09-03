@@ -18,6 +18,10 @@ const displayCategory = (data) => {
 }
 
 const loadDetails = (data) => {
+    // spinner start
+    const spinner = document.getElementById('spinner')
+    spinner.classList.remove('d-none')
+
     const url = ` https://openapi.programming-hero.com/api/news/category/${data}`
     fetch(url)
         .then(res => res.json())
@@ -42,8 +46,8 @@ const displayDetails = (datas) => {
                 <p class="card-text my-3">${kkk.details.slice(0, 200)}</p>
                 <div class= "d-flex mt-5">
                 <img src="${kkk.author.img}" class="rounded-circle author-img"  alt="...">
-                <p class="ms-3">${kkk.author.name}</p>
-                <p class="ms-3"><i class="fa-solid fa-eye"></i> ${kkk.total_view}</p>
+                <p class="ms-3">${kkk.author.name ? kkk.author.name : 'data unavailable'}</p>
+                <p class="ms-3"><i class="fa-solid fa-eye"></i> ${kkk.total_view ? kkk.total_view : 'data unavailable'}</p>
                 <button onclick="showModal('${kkk._id}')" type="button" class="btn btn-dark ms-5" 
                 data-bs-toggle="modal" data-bs-target="#exampleModal">Details <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
@@ -52,6 +56,9 @@ const displayDetails = (datas) => {
         </div>
      `
         dDetails.appendChild(div)
+        // spinner stop
+        const spinner = document.getElementById('spinner')
+        spinner.classList.add('d-none')
     })
 }
 
