@@ -30,6 +30,9 @@ const loadDetails = (data) => {
 }
 
 const displayDetails = (items) => {
+    items.sort((a, b) => {
+        return b.total_view - a.total_view;
+    });
     //  display items number -
     const itemsFound = document.getElementById('items-found')
     itemsFound.innerHTML = `${items.length} items found for this category`
