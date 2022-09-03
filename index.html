@@ -8,6 +8,7 @@
     <!-- bootstrap-link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- css-style -->
     <style>
         .author-img {
             width: 40px;
@@ -24,14 +25,14 @@
             <div class="container-fluid">
                 <h3>News <span class="text-danger">365</span></h3>
                 <div class="d-flex">
-                    <h5 class="me-4">News</h5>
-                    <h5 class="me-3 text-secondary">Blog</h5>
+                    <a href="" class="me-4 text-black" style="text-decoration: none;">News</a>
+                    <a href="" class="me-3 text-secondary" style="text-decoration: none;">Blog</a>
                 </div>
             </div>
         </nav>
         <hr>
         <!-- category -->
-        <nav id="display-category" class="navbar mt-2">
+        <nav id="display-category" class="navbar mt-2" style="cursor: pointer;">
         </nav>
         <!-- spinner -->
         <div id="spinner" class="d-flex justify-content-center align-items-center d-none" style="height: 500px;">
@@ -42,18 +43,18 @@
     </header>
 
     <main>
-        <!-- display-details -->
+        <!-- display items number -->
         <section>
-            <div class="bg-secondary text-dark bg-opacity-10 my-5">
+            <div class="bg-secondary bg-opacity-10 my-5 rounded-3">
                 <h4 id="items-found"></h4>
             </div>
         </section>
-
+        <!-- display-categoryDetails -->
         <section>
-            <div id="display-details" class="mb-3 w-75">
+            <div id="display-categoryDetails" class="mb-3 w-75">
             </div>
         </section>
-        <!-- Modal -->
+        <!-- display modal -->
         <section>
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">

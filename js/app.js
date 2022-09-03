@@ -18,10 +18,10 @@ const displayCategory = (data) => {
 }
 
 const loadDetails = (data) => {
-    // spinner start
+    // spinner start -
     const spinner = document.getElementById('spinner')
     spinner.classList.remove('d-none')
-
+    // load details -
     const url = ` https://openapi.programming-hero.com/api/news/category/${data}`
     fetch(url)
         .then(res => res.json())
@@ -29,46 +29,50 @@ const loadDetails = (data) => {
         .catch(error => console.log(error))
 }
 
-const displayDetails = (datas) => {
-    // console.log(datas)
+const displayDetails = (items) => {
+    //  display items number -
     const itemsFound = document.getElementById('items-found')
-    itemsFound.innerHTML = `${datas.length} items found for this category`
+    itemsFound.innerHTML = `${items.length} items found for this category`
     const spinner = document.getElementById('spinner')
     spinner.classList.add('d-none')
 
 
-    const dDetails = document.getElementById('display-details')
+    // display category details -
+    const dDetails = document.getElementById('display-categoryDetails')
     dDetails.textContent = ''
-    datas.forEach(kkk => {
-        // console.log(kkk)
+    items.forEach(item => {
         const div = document.createElement('div')
         div.innerHTML = `
+        <div class="bg-secondary bg-opacity-10 rounded-3">
         <div class="row g-0 mb-5">
         <div class="col-md-4">
-            <img src="${kkk.thumbnail_url}" class="img-fluid rounded-start" alt="...">
+            <img src="${item.thumbnail_url}" class="img-fluid rounded-start" alt="...">
         </div>
         <div class="col-md-8">
             <div class="card-body">
-                <h5 class="card-title my-3">${kkk.title}</h5>
-                <p class="card-text my-3">${kkk.details.slice(0, 200)}</p>
+                <h5 class="card-title my-3">${item.title}</h5>
+                <p class="card-text my-3">${item.details.slice(0, 200)}...</p>
                 <div class= "d-flex mt-5">
-                <img src="${kkk.author.img}" class="rounded-circle author-img"  alt="...">
-                <p class="ms-3">${kkk.author.name ? kkk.author.name : 'data unavailable'}</p>
-                <p class="ms-3"><i class="fa-solid fa-eye"></i> ${kkk.total_view ? kkk.total_view : 'data unavailable'}</p>
-                <button onclick="showModal('${kkk._id}')" type="button" class="btn btn-dark ms-5" 
+                <img src="${item.author.img}" class="rounded-circle author-img"  alt="...">
+                <p class="ms-3">${item.author.name ? item.author.name : 'data unavailable'}</p>
+                <p class="ms-3"><i class="fa-solid fa-eye"></i> ${item.total_view ? item.total_view : 'data unavailable'}</p>
+                <button onclick="showModal('${item._id}')" type="button" class="btn btn-dark ms-5" 
                 data-bs-toggle="modal" data-bs-target="#exampleModal">Details <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
         </div>
         </div>
+        </div>
      `
         dDetails.appendChild(div)
-        // spinner stop
+
+        // spinner stop -
         const spinner = document.getElementById('spinner')
         spinner.classList.add('d-none')
     })
 }
 
+// modal - -
 const showModal = (data) => {
     const url = ` https://openapi.programming-hero.com/api/news/${data}`
     fetch(url)
@@ -78,7 +82,6 @@ const showModal = (data) => {
 }
 
 const displayModal = (data) => {
-    // console.log(data)
     const title = document.getElementById('exampleModalLabel')
     title.innerText = data.title
     const modalBody = document.getElementById('modal-body')
@@ -87,6 +90,8 @@ const displayModal = (data) => {
     <p>${data.details}</p>
     <p>Published Date: ${data.author.published_date}</p>
     <p>Rating: ${data.rating.number}</p>
+    <p>Author: ${data.author.name ? data.author.name : 'data unavailable'}</p>
+    <p><i class="fa-solid fa-eye"></i> ${data.total_view ? data.total_view : 'data unavailable'}</p>
     `
 }
 
