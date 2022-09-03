@@ -29,7 +29,7 @@ const displayDetails = (datas) => {
     const dDetails = document.getElementById('display-details')
     dDetails.textContent = ''
     datas.forEach(kkk => {
-        console.log(kkk)
+        // console.log(kkk)
         const div = document.createElement('div')
         div.innerHTML = `
         <div class="row g-0 mb-5">
@@ -40,6 +40,12 @@ const displayDetails = (datas) => {
             <div class="card-body">
                 <h5 class="card-title my-3">${kkk.title}</h5>
                 <p class="card-text my-3">${kkk.details.slice(0, 200)}</p>
+                <div class= "d-flex mt-5">
+                <img src="${kkk.author.img}" class="rounded-circle author-img"  alt="...">
+                <p class="ms-3">${kkk.author.name}</p>
+                <p class="ms-3"><i class="fa-solid fa-eye"></i> ${kkk.total_view}</p>
+                <button onclick="showModal(${kkk._id})" type="button" class="btn btn-dark ms-5">Details <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
             </div>
         </div>
         </div>
@@ -47,5 +53,9 @@ const displayDetails = (datas) => {
         dDetails.appendChild(div)
     })
 }
+
+
+
+
 
 
