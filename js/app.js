@@ -43,7 +43,7 @@ const displayDetails = (items) => {
     items.forEach(item => {
         const div = document.createElement('div')
         div.innerHTML = `
-        <div class="bg-secondary bg-opacity-10 rounded-3">
+        <div class="bg-secondary bg-opacity-10 rounded-3 p-3 m-4">
         <div class="row g-0 mb-5">
         <div class="col-md-4">
             <img src="${item.thumbnail_url}" class="img-fluid rounded-start" alt="...">
@@ -52,7 +52,7 @@ const displayDetails = (items) => {
             <div class="card-body">
                 <h5 class="card-title my-3">${item.title}</h5>
                 <p class="card-text my-3">${item.details.slice(0, 200)}...</p>
-                <div class= "d-flex mt-5">
+                <div class= "d-flex flex-column flex-md-row mt-5">
                 <img src="${item.author.img}" class="rounded-circle author-img"  alt="...">
                 <p class="ms-3">${item.author.name ? item.author.name : 'data unavailable'}</p>
                 <p class="ms-3"><i class="fa-solid fa-eye"></i> ${item.total_view ? item.total_view : 'data unavailable'}</p>
