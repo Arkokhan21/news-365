@@ -4,7 +4,7 @@ const loadCategory = () => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayCategory(data.data.news_category))
-    // .catch(error => console.log(error))
+        .catch(error => console.log(error))
 }
 loadCategory()
 
@@ -26,10 +26,17 @@ const loadDetails = (data) => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayDetails(data.data))
-    // .catch(error => console.log(error))
+        .catch(error => console.log(error))
 }
 
 const displayDetails = (datas) => {
+    // console.log(datas)
+    const itemsFound = document.getElementById('items-found')
+    itemsFound.innerHTML = `${datas.length} items found for this category`
+    const spinner = document.getElementById('spinner')
+    spinner.classList.add('d-none')
+
+
     const dDetails = document.getElementById('display-details')
     dDetails.textContent = ''
     datas.forEach(kkk => {
@@ -67,11 +74,11 @@ const showModal = (data) => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayModal(data.data[0]))
-    // .catch(error => console.log(error))
+        .catch(error => console.log(error))
 }
 
 const displayModal = (data) => {
-    console.log(data)
+    // console.log(data)
     const title = document.getElementById('exampleModalLabel')
     title.innerText = data.title
     const modalBody = document.getElementById('modal-body')
