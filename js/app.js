@@ -44,7 +44,8 @@ const displayDetails = (datas) => {
                 <img src="${kkk.author.img}" class="rounded-circle author-img"  alt="...">
                 <p class="ms-3">${kkk.author.name}</p>
                 <p class="ms-3"><i class="fa-solid fa-eye"></i> ${kkk.total_view}</p>
-                <button onclick="showModal(${kkk._id})" type="button" class="btn btn-dark ms-5">Details <i class="fa-solid fa-arrow-right"></i></button>
+                <button onclick="showModal('${kkk._id}')" type="button" class="btn btn-dark ms-5" 
+                data-bs-toggle="modal" data-bs-target="#exampleModal">Details <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
         </div>
@@ -54,7 +55,26 @@ const displayDetails = (datas) => {
     })
 }
 
+const showModal = (data) => {
+    const url = ` https://openapi.programming-hero.com/api/news/${data}`
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayModal(data.data[0]))
+    // .catch(error => console.log(error))
+}
 
+const displayModal = (data) => {
+    console.log(data)
+    const title = document.getElementById('exampleModalLabel')
+    title.innerText = data.title
+    const modalBody = document.getElementById('modal-body')
+    modalBody.innerHTML = `
+    <img src="${data.image_url}" class="img-fluid rounded-start" alt="...">
+    <p>${data.details}</p>
+    <p>Published Date: ${data.author.published_date}</p>
+    <p>Rating: ${data.rating.number}</p>
+    `
+}
 
 
 
